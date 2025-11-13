@@ -1,0 +1,12 @@
+﻿{
+  "name": "sdk-demos-js",
+  "version": "1.0.0",
+  "description": "Simple SDK demo for Node.js",
+  "main": "demo.js",
+  "scripts": {
+    "start": "node demo.js"
+  },
+  "dependencies": {
+    "axios": "^1.0.0"
+  }
+}
