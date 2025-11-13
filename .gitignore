@@ -1,0 +1,14 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+venv/
+
+# Node
+node_modules/
+
+# Go
+/bin/
+/pkg/
+
+# Common
+.env
