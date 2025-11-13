@@ -2,7 +2,7 @@
 # NOTE: This workflow uses the pull_request_target event so it runs in the context
 # of the base repository and can access repository secrets (required to use a PAT).
 # Be careful: do NOT check out or run untrusted code from the PR head in this job.
-name: Auto-merge pull requests
+name: Auto-merge pull requests #test
 
 on:
   pull_request_target:
