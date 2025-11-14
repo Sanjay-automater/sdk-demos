@@ -1,0 +1,82 @@
+# Using Simplicity Connect Mobile App for OTA DFU
+
+## Introduction
+
+This tutorial shows you how to perform a Device Firmware Upgrade (DFU) using Bluetooth Over-The-Air (OTA) updates with the Simplicity Connect mobile app. Any device with OTA updates enabled in its GATT profile can be upgraded this way. Most example applications in the Bluetooth SDK already include OTA support. In these examples, DFU mode is triggered through the Silicon Labs OTA service, which is part of the application’s GATT database. You can add OTA functionality to your project by installing the In-Place OTA DFU or Application OTA DFU software component.
+
+> **Note:** The In-Place OTA DFU (AppLoader method) is obsolete and not recommended for new projects.
+
+In this tutorial, you will upgrade the **Bluetooth - SoC Empty** example application to the **Bluetooth - SoC Thermometer** example application. The Thermometer example includes the Health Thermometer service, which provides visual feedback so you can confirm the application has changed.
+
+---
+
+## Requirements
+
+- Wireless Starter Kit and Bluetooth-capable radio board
+- Simplicity Studio 5
+- Android or iOS mobile device
+
+---
+
+## Step 1: Prepare Your Environment
+
+1. **Install the Simplicity Connect mobile app** on your Android or iOS device.
+2. **Connect your kit to your computer** and select it in Simplicity Studio.
+3. **Create the Bluetooth - SoC Empty example project** from the Simplicity Studio Launcher.
+4. **Build and flash the Bluetooth - SoC Empty project** to your device.
+5. **Create the Bluetooth - SoC Thermometer example project** in Simplicity Studio.
+6. **Build the Thermometer project.**
+7. **Generate the upgrade files:**
+    - Double-click the `create_bl_files.bat`, `.sh`, or `.py` script in the project tree (you may need to install the BLE Post Build component or use the Post-Build Editor).
+    - You may need to define two environment variables before running the script:
+        - `PATH_SCMD` (e.g., `C:\SiliconLabs\SimplicityStudio\v5\developer\adapter_packs\commander`)
+        - `PATH_GCCARM` (e.g., `C:\SiliconLabs\SimplicityStudio\v5\developer\toolchains\gnu_arm\12.2.rel1_2023.7`)
+    - The script creates an `output_gbl` folder in your project directory and generates several `.gbl` upgrade image files:
+        - `application.gbl`: User application (including full Bluetooth stack)
+        - `application-crc.gbl`: User application with CRC32 checksum
+        - `full.gbl`: User application and Bootloader/AppLoader (full update) for UART DFU (not needed in this example)
+        - `full-crc.gbl`: User application and Bootloader/AppLoader (full update) with CRC32 checksum for UART DFU (not needed in this example)
+    - **Note:** A full update is only needed if the Bootloader/AppLoader must be updated. See [Using the Gecko Bootloader with Silicon Labs Bluetooth Applications](#) for more details.
+    - The bootloader `.s37` file must be placed with the `create_bl_files` scripts and named appropriately (e.g., `bootloader-second-stage.s37`) to be included in the `full.gbl` file.
+
+8. **Transfer the `.gbl` files to your smartphone** so the mobile app can access them.
+    - You can transfer via USB to any folder on your phone or use a cloud storage service (e.g., Google Drive, Dropbox, iCloud).
+
+---
+
+## Step 2: Upgrade the Device Using the Mobile App
+
+1. **Open the Simplicity Connect mobile app** on your smartphone.
+2. **Go to the Scan menu** and connect to your kit (default name: "Empty Example").
+3. **Open the pop-up menu** in the upper right corner and select **OTA Firmware**.
+4. **Select Partial** and choose the appropriate `.gbl` file on your smartphone.
+5. **Tap Upload** to start the upgrade.
+6. **After the upgrade completes**, verify that the kit is now running the Bluetooth - SoC Thermometer example (the device will appear as "Thermometer Example" in the Bluetooth Browser).
+
+---
+
+## Troubleshooting and Additional Information
+
+- To enable Bluetooth OTA upgrade, the target device must be programmed with the Gecko Bootloader. This is an application bootloader that manages new firmware image acquisition.
+- Running "Demos" in Simplicity Studio flashes both the bootloader and user application. Flashing an "Example Project" only flashes the application.
+- If your OTA upload stops at 0% and you see a "GATT CMD STARTED" message on Android, this may indicate a missing or incorrect bootloader.
+
+### If you need to flash the bootloader:
+
+1. **Create a Gecko Bootloader project** from the Launcher Perspective in Simplicity Studio.
+2. **Select the "Internal Storage Bootloader" example project** with a configuration suitable for your storage size.
+3. **Configure options** in the `<projectname>.slcp` file of the bootloader project as needed.
+4. **Build the project** and locate the bootloader image in the build directory (e.g., “GNU ARM <compiler version> - Default”).
+    - For Series 1 devices: Use the `<projectname>-combined.s37` file (combined image with CRC32 checksum).
+    - For Series 2 devices: Use the `<projectname>.s37` file (main bootloader).
+5. **Flash the bootloader image** to your device.
+
+---
+
+<!-- Developer Comments/Questions -->
+<!--
+- Should we clarify which `.gbl` file to use for different upgrade scenarios?
+- Are there any prerequisites for the environment variables (`PATH_SCMD`, `PATH_GCCARM`) that should be documented?
+- Is there a recommended method for transferring `.gbl` files to iOS devices?
+- Should we provide troubleshooting steps for common OTA errors?
+-->
