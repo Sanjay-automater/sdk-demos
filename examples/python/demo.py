@@ -10,7 +10,7 @@ if not API_KEY:
 
 # Replace with real SDK import / client usage if available
 # Example: from sdk import Client; client = Client(api_key=API_KEY)
-ENDPOINT = "https://api.example.com/v1/demo"  # placeholder
+ENDPOINT = "https://api.example.com/v1/demo1"  # placeholder
 
 def main():
     headers = {"Authorization": f"Bearer {API_KEY}", "Content-Type": "application/json"}
@@ -26,3 +26,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
