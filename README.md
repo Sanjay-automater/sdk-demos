@@ -2,20 +2,6 @@
 
 This repository showcases an automated workflow for generating professional release notes for software projects. The core script provided here streamlines the release management process by leveraging artificial intelligence (AI) to analyze, organize, and summarize all changes made to the codebase.
 
-### Key Objectives
-
-- **Automate Release Notes Creation:**  
-  The script automatically collects all relevant pull requests, issues, and commits from the repository since the last release.
-
-- **AI-Powered Grouping and Summarization:**  
-  Instead of relying on manual categorization or simple keyword matching, the script sends raw change data to an AI service. The AI intelligently decides which section (such as "What's New", "Fixed", "Improved", "Known Issues", etc.) each change belongs to, and rewrites the content in a clear, concise, and professional style.
-
-- **Multi-Format Output:**  
-  The generated release notes are saved in both Markdown and PDF formats, with custom styling for readability and presentation.
-
-- **Seamless GitHub Integration:**  
-  The script automatically creates a draft release on GitHub, attaching the AI-generated release notes and incrementing the version number for each new release.
-
 ### Benefits
 
 - **Consistency:**  
@@ -53,3 +39,4 @@ The workflow is designed for simplicity and automation, enabling technical write
 A technical writer simply triggers the script, and—boom—the draft release note is created in GitHub, ready for review and publication.
 
 ---
+
