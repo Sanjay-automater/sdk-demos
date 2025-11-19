@@ -39,4 +39,40 @@ The workflow is designed for simplicity and automation, enabling technical write
 A technical writer simply triggers the script, and—boom—the draft release note is created in GitHub, ready for review and publication.
 
 ---
+## Procedure: Generate AI-Powered Release Notes
+
+Use the following procedure to generate automated, AI-powered release notes for your project.
+
+### Step 1: Edit a Script in the Examples Folder
+- Navigate to the `examples` folder.
+- Open the relevant script file (such as `go.mod` or a Python file).
+- Make the necessary modifications to the script.
+
+![Editing Script in Examples Folder](.github/workflows/EditingAnyScript.png)
+
+### Step 2: Commit Your Changes
+- Add a descriptive commit message and summary.
+- Choose to either commit directly to the main branch or create a new branch and open a pull request.
+
+![Commit Changes](.github/workflows/CommitChangesorCreatePR.png)
+
+### Step 3: Run the Automation Script Locally
+- Execute the provided Python automation script from your local development environment.
+- This action initiates the release note generation workflow.
+
+![Execute Script from Local](.github/workflows/ExecuteSCriptfromLocal.png)
+
+### Step 4: Review the Draft Release Notes
+- Upon successful execution, the script generates draft release notes.
+- The draft is created in GitHub and is available for review and publication.
+
+![Creates Release Notes Draft](.github/workflows/CreatesReleaseNotesDraft.png)
+
+---
+
+> **Note:**  
+> This workflow is designed for ease of use and efficiency. By following these steps, technical writers and release managers can ensure that release notes are consistently generated, professionally formatted, and ready for publication with minimal manual effort.
+
+---
+
 
